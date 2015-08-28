@@ -193,22 +193,27 @@ func IsMechanic(s string) bool {
 
 // JSON Card struct
 type JsonCard struct {
-	Name        string   `json:"name"`
-	ID          string   `json:"id"`
-	Attack      int      `json:"attack,omitempty"`
-	Health      int      `json:"health,omitempty"`
-	Cost        int      `json:"cost,omitempty"`
-	Durability  int      `json:"durability,omitempty"`
-	Type        string   `json:"type"`
-	Rarity      string   `json:"rarity"`
-	Text        string   `json:"text,omitempty"`
-	Flavor      string   `json:"flavor,omitempty"`
-	Set         string   `json:"set"`
-	Class       string   `json:"class,omitempty"`
-	Race        string   `json:"race,omitempty"`
-	Mechanics   []string `json:"mechanics,omitempty"`
-	Faction     string   `json:"faction,omitempty"`
-	Collectible bool     `json:"collectible"`
+	Name         string   `json:"name"`
+	ID           string   `json:"id"`
+	Attack       int      `json:"attack,omitempty"`
+	Health       int      `json:"health,omitempty"`
+	Cost         int      `json:"cost,omitempty"`
+	Durability   int      `json:"durability,omitempty"`
+	Type         string   `json:"type"`
+	Rarity       string   `json:"rarity"`
+	Text         string   `json:"text,omitempty"`
+	InPlayText   string   `json:"inPlayText,omitempty"`
+	Flavor       string   `json:"flavor,omitempty"`
+	Set          string   `json:"set"`
+	Class        string   `json:"playerClass,omitempty"`
+	Race         string   `json:"race,omitempty"`
+	Mechanics    []string `json:"mechanics,omitempty"`
+	Faction      string   `json:"faction,omitempty"`
+	Artist       string   `json:"artist,omitempty"`
+	Collectible  bool     `json:"collectible"`
+	Elite        bool     `json:"elite,omitempty"`
+	HowToGet     string   `json:"howToGet,omitempty"`
+	HowToGetGold string   `json:"howToGetGold,omitempty"`
 }
 
 func EntityToJson(e Entity) JsonCard {
@@ -241,10 +246,20 @@ func EntityToJson(e Entity) JsonCard {
 			card.Cost = tag.Value
 		case enum == "CardTextInHand":
 			card.Text = tag.StringValue
+		case enum == "CardTextInPlay":
+			card.InPlayText = tag.StringValue
 		case enum == "FlavorText":
 			card.Flavor = tag.StringValue
 		case enum == "Collectible":
 			card.Collectible = tag.Value == 1
+		case enum == "ArtistName":
+			card.Artist = tag.StringValue
+		case enum == "Elite":
+			card.Elite = tag.Value == 1
+		case enum == "HowToGetThisCard":
+			card.HowToGet = tag.StringValue
+		case enum == "HowToGetThisGoldCard":
+			card.HowToGetGold = tag.StringValue
 		case IsMechanic(enum):
 			card.Mechanics = append(card.Mechanics, enum)
 		}
@@ -257,7 +272,8 @@ func EntityToJson(e Entity) JsonCard {
 }
 
 func PrintUsageAndExit() {
-	fmt.Println("Usage: hearthstone-json path/to/carddef.xml")
+	fmt.Println("Transform a Hearthstone xml file extracted from cardxml0.unity3d to JSON")
+	fmt.Println("Usage: hearthstone-json path/to/enUS.txt")
 	os.Exit(1)
 }
 
