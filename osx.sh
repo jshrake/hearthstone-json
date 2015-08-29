@@ -4,6 +4,7 @@
 set -e
 # set -v
 
+
 # Disunity requires java! Sorry!
 if ! type -p java >> /dev/null; then
   echo "Error: this script requires java for disunity, a program to extract assets from unity archive files";
@@ -27,7 +28,10 @@ fi
 # Download the appropriate hearthstone-json binary
 ARCH=`uname -m`
 HEARTHSTONE_JSON="hearthstone-json-${ARCH}-macosx"
+VERSION="v0.1.0-alpha"
 # TODO(jshrake): Acquire binary from Release binaries
+curl -LOk https://github.com/jshrake/hearthstone-json/releases/download/${VERSION}/${HEARTHSTONE_JSON}
+chmod +x ${HEARTHSTONE_JSON}
 
 # Use disunity to extract the card def xml files and transform each to json
 DISUNITY_VERS=0.3.4
@@ -45,7 +49,7 @@ for file in cardxml0/CAB-cardxml0/TextAsset/*.txt; do
   filename="${filename%.*}"
   output="output/${filename}.json"
   echo "Generating ${output} from ${file}";
-  ./hearthstone-json ${file} > ${output};
+  ./${HEARTHSTONE_JSON} ${file} > ${output};
 done
 echo "Finished! Please find the JSON files in the output directory"
 
@@ -53,3 +57,4 @@ echo "Finished! Please find the JSON files in the output directory"
 rm -rf disunity*
 rm -rf cardxml0*
 rm -rf lib
+rm ${HEARTHSTONE_JSON}
