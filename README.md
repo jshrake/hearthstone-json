@@ -3,7 +3,6 @@
 A command-line tool for converting the bundled [Hearthstone](http://us.battle.net/hearthstone/) card definitions from XML to JSON.
 
 ## What
----
 
 Hearthstone ships with a [unity3d](https://unity3d.com/) asset bundle containing XML files for every supported language. The XML files contain definitions for every card in the game. The default install location for the unity3d asset bundle is:
 
@@ -13,7 +12,6 @@ Hearthstone ships with a [unity3d](https://unity3d.com/) asset bundle containing
 In order to extract the XML files from the bundle, we need to use a tool such as [disunity](https://github.com/ata4/disunity), which depends on Java. The purpose of this tool is to transform the extracted XML files to human-readable JSON. The resulting JSON is compatible with the API defined in [http://hearthstonejson.com/](http://hearthstonejson.com/).
 
 ## Usage
----
 
 ### OSX
 ```bash
@@ -31,7 +29,6 @@ The above performs the heavy lifting discussed in [what](#what), specifically:
 
 
 ## Developement
----
 
 ```bash
 git clone https://github.com/jshrake/hearthstone-json
