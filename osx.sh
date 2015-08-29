@@ -42,7 +42,6 @@ java -jar disunity.jar extract cardxml0.unity3d
 rm cardxml0.unity3d
 
 # Transform the xml files
-mkdir -p output
 for file in cardxml0/CAB-cardxml0/TextAsset/*.txt; do
   filename=$(basename "$file")
   filename="${filename%.*}"
