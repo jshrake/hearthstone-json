@@ -107,6 +107,7 @@ var CardSetIDToString = map[int]string{
 	16: "Credits",
 	17: "Hero Skins",
 	18: "Tavern Brawl",
+	20: "The League of Explorers",
 }
 
 var CardTypeIDToString = map[int]string{
