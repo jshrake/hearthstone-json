@@ -15,7 +15,7 @@ unzip master.zip
 # Download the appropriate hearthstone-json binary
 ARCH=$(uname -m)
 HEARTHSTONE_JSON="hearthstone-json-${ARCH}-macosx"
-HEARTHSTONE_JSON_VERSION="v0.1.0-alpha"
+HEARTHSTONE_JSON_VERSION="v0.1.1-alpha"
 ACQUIRE_HEARTHSTONE_JSON="curl -LOk https://github.com/jshrake/hearthstone-json/releases/download/${HEARTHSTONE_JSON_VERSION}/${HEARTHSTONE_JSON}"
 echo "$ACQUIRE_HEARTHSTONE_JSON"
 $ACQUIRE_HEARTHSTONE_JSON
